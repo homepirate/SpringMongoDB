@@ -1,6 +1,7 @@
 package com.spring.mongo.demo.repository;
 
 import com.spring.mongo.demo.model.Home;
+import com.spring.mongo.demo.model.Owner;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 
@@ -19,4 +20,8 @@ public interface HomeRepository extends MongoRepository<Home, String> {
 
     @Override
     Optional<Home> findById(String s);
+
+    void deleteByOwner(Owner owner);
+
+    boolean existsByOwner(Owner owner);
 }

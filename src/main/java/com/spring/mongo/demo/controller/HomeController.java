@@ -1,10 +1,13 @@
 package com.spring.mongo.demo.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import com.spring.mongo.demo.model.Home;
 import com.spring.mongo.demo.model.HomeStats;
+import com.spring.mongo.demo.model.Owner;
 import com.spring.mongo.demo.service.HomeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -56,5 +59,11 @@ public class HomeController {
 	@GetMapping("/get-by-id/{id}")
 	public Optional<Home> getHomeById(@PathVariable String id){
 		return homeService.findById(id);
+	}
+
+	@DeleteMapping("/delete-by-owner")
+	public Map<String, String> deleteByOwner(@RequestBody Owner owner){
+		Map<String, String> result = homeService.deleteByOwner(owner);
+		return result;
 	}
 }

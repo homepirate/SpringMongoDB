@@ -1,10 +1,13 @@
 package com.spring.mongo.demo.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import com.spring.mongo.demo.model.Home;
 import com.spring.mongo.demo.model.HomeStats;
+import com.spring.mongo.demo.model.Owner;
 import com.spring.mongo.demo.repository.HomeRepository;
 import com.spring.mongo.demo.service.HomeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,5 +79,20 @@ public class HomeServiceImpl implements HomeService {
 	@Override
 	public Optional<Home> findById(String s) {
 		return repository.findById(s);
+	}
+
+	@Override
+	public Map<String, String> deleteByOwner(Owner owner) {
+		Map<String, String> result = new HashMap<>();
+		boolean hasRecords = repository.existsByOwner(owner);
+		if (hasRecords) {
+			repository.deleteByOwner(owner);
+			result.put("status", "OK");
+			result.put("data", "Objects deleted");
+		} else {
+			result.put("data", "Owner not found");
+			result.put("status", "FAIL");
+		}
+		return result;
 	}
 }

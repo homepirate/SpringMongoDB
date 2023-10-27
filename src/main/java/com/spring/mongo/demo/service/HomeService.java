@@ -1,10 +1,12 @@
 package com.spring.mongo.demo.service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import com.spring.mongo.demo.model.Home;
 import com.spring.mongo.demo.model.HomeStats;
+import com.spring.mongo.demo.model.Owner;
 
 public interface HomeService {
 	
@@ -22,4 +24,6 @@ public interface HomeService {
 	List<HomeStats> getHomeStatsByTypeAndSquare();
 
 	Optional<Home> findById(String s);
+
+	Map<String, String> deleteByOwner(Owner owner);
 }

@@ -39,5 +39,13 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
         System.out.println(homeService.getCountByCity("Moscow"));
 
         System.out.println(homeService.getHomeStatsByTypeAndSquare());
+
+//        try {
+//            homeService.deleteByOwner();
+//
+//        }
+//        catch (Exception e){
+//
+//        }
     }
 }
